@@ -217,7 +217,7 @@ __pycache__/
 venv/
 env/
 myenv/
-.venv/
+
 
 # 🧰 IDE / Editor configs
 .vscode/
