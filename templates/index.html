@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h1>🌾 Crop Recommendation System</h1>
+            <p class="subtitle">Enter the soil and environmental conditions to find the perfect crop.</p>
+            
+            <form id="cropForm">
+                <div class="form-grid">
+                    <fieldset>
+                        <legend>Soil Nutrients</legend>
+                        <div class="input-group">
+                            <label for="N">Nitrogen (N)</label>
+                            <input type="number" step="any" id="N" name="N" placeholder="e.g., 90" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="P">Phosphorus (P)</label>
+                            <input type="number" step="any" id="P" name="P" placeholder="e.g., 42" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="K">Potassium (K)</label>
+                            <input type="number" step="any" id="K" name="K" placeholder="e.g., 43" required>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>Environmental Factors</legend>
+                        <div class="input-group">
+                            <label for="temperature">Temperature (in °C)</label>
+                            <input type="number" step="any" id="temperature" name="temperature" placeholder="e.g., 20.8" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="humidity">Humidity (in %)</label>
+                            <input type="number" step="any" id="humidity" name="humidity" placeholder="e.g., 82.0" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="ph">Soil pH</label>
+                            <input type="number" step="any" id="ph" name="ph" placeholder="e.g., 6.5" min="0" max="14" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="rainfall">Rainfall (in mm)</label>
+                            <input type="number" step="any" id="rainfall" name="rainfall" placeholder="e.g., 202.9" required>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <button type="submit" id="predictButton">
+                    <span class="button-text">Predict Crop</span>
+                    <span class="button-loader" style="display: none;"></span>
+                </button>
+            </form>
+
+            <div id="result" class="result-box" style="display: none;">
+                </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

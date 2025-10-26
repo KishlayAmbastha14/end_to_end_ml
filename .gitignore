@@ -205,3 +205,41 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# 🧹 Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 🧱 Environment folders
+.env
+venv/
+env/
+myenv/
+.venv/
+
+# 🧰 IDE / Editor configs
+.vscode/
+.idea/
+
+# 🧾 Logs and caches
+*.log
+logs/
+catboost_info/
+crop_logs
+
+# 🧪 Data and model artifacts
+artifacts/
+notebook/
+*.csv
+*.xlsx
+*.pkl
+*.sav
+*.h5
+*.db
+*.sqlite
+
+# 🧰 OS / Misc
+.DS_Store
+Thumbs.db

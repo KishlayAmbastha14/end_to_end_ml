@@ -1,0 +1,12 @@
+pandas 
+numpy 
+seaborn
+scikit-learn
+dill
+xgboost
+catboost
+#note whenever we are doing "pip install -r requirements.txt" we have to commit down this things like -e .
+
+# -e .
+
+fastapi[standard]

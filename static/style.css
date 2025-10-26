@@ -1,0 +1,169 @@
+/* Basic Reset and Font */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6; /* Light gray background */
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Main Container */
+.container {
+    width: 100%;
+    max-width: 800px; /* Max width for the card */
+}
+
+/* The Card */
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Typography */
+h1 {
+    text-align: center;
+    color: #2c5e4a; /* Dark green */
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Form Layout */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 30px; /* Space between columns */
+    margin-bottom: 30px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #2c5e4a;
+    padding: 0 10px;
+}
+
+/* Input Groups */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.input-group input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Important for padding to work correctly */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: #4CAF50; /* Green highlight on focus */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Submit Button */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #4CAF50; /* Primary green */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+button[type="submit"]:active {
+    transform: scale(0.99);
+}
+
+/* Button Loading Spinner */
+.button-loader {
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Result Box */
+.result-box {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #e8f5e9; /* Light green background */
+    border: 1px solid #c8e6c9; /* Green border */
+    border-radius: 8px;
+    text-align: center;
+}
+
+.result-box h3 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #2e7d32; /* Dark green text */
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr; /* Stack columns on top of each other */
+        gap: 0;
+    }
+
+    fieldset {
+        margin-bottom: 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+}
