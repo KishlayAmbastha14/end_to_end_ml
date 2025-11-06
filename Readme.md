@@ -1,4 +1,4 @@
-```## learning phased
+```
 
 # My ML Project
 
@@ -36,17 +36,18 @@ It demonstrates how to structure a Python project, manage dependencies, build re
 
 
 ```
-🌾 Crop Prediction — End-to-End ML Project
-📘 1. Overview
+# 🌾 Crop Prediction — End-to-End ML Project
+
+## 📘 1. Overview
 
 This project is an end-to-end modular Machine Learning application built from scratch.
 It demonstrates a production-ready structure with modularized code, reusable components, pipeline automation, and environment management — following real-world ML project architecture.
 
-🧠 2. What I Learned
+## 🧠 2. What I Learned
 
 Through this project, I learned to build a complete ML pipeline systematically and professionally.
 
-🔹 Project Setup
+## 🔹 Project Setup
 
 Created a requirements.txt file to list all dependencies.
 
@@ -64,7 +65,7 @@ packages (automatically discovered from src)
 
 install_requires (dependencies auto-loaded from requirements.txt)
 
-🔹 Project Packaging
+## 🔹 Project Packaging
 
 Created a src folder as the main source code directory.
 
