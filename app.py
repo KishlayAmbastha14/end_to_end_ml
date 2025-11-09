@@ -20,7 +20,9 @@ app.add_middleware(
 
 predictor = CropPredictionPipeline()
 
+# ************ this things we have done to show with our html page website
 templates = Jinja2Templates(directory="templates")
+
 logging.info("templates created")
 app.mount("/static",StaticFiles(directory="static"),name="static")
 logging.info("static files detect")
@@ -35,12 +37,15 @@ class CropData(BaseModel):
     ph: float
     rainfall: float
 
+
+# ^^^^^^^^^^^^^^^^ here we have done the HTMLResponse matlab iss route se jo bhi kuch jayega woo ek html paege hoga
 @app.get("/",response_class=HTMLResponse)
 async def root_read(request:Request):
   return templates.TemplateResponse("index.html",{"request":request})
 
 
 logging.info("prediction has started ")
+
 @app.post("/predict")
 async def predict_ans(data:CropData):
   input_data = data.model_dump()

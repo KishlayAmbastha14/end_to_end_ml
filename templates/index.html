@@ -3,69 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crop Recommendation</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Crop Recommendation System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .loader {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
 
-    <div class="container">
-        <div class="card">
-            <h1>🌾 Crop Recommendation System</h1>
-            <p class="subtitle">Enter the soil and environmental conditions to find the perfect crop.</p>
-            
-            <form id="cropForm">
-                <div class="form-grid">
-                    <fieldset>
-                        <legend>Soil Nutrients</legend>
-                        <div class="input-group">
-                            <label for="N">Nitrogen (N)</label>
-                            <input type="number" step="any" id="N" name="N" placeholder="e.g., 90" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="P">Phosphorus (P)</label>
-                            <input type="number" step="any" id="P" name="P" placeholder="e.g., 42" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="K">Potassium (K)</label>
-                            <input type="number" step="any" id="K" name="K" placeholder="e.g., 43" required>
-                        </div>
-                    </fieldset>
-                    
-                    <fieldset>
-                        <legend>Environmental Factors</legend>
-                        <div class="input-group">
-                            <label for="temperature">Temperature (in °C)</label>
-                            <input type="number" step="any" id="temperature" name="temperature" placeholder="e.g., 20.8" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="humidity">Humidity (in %)</label>
-                            <input type="number" step="any" id="humidity" name="humidity" placeholder="e.g., 82.0" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="ph">Soil pH</label>
-                            <input type="number" step="any" id="ph" name="ph" placeholder="e.g., 6.5" min="0" max="14" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="rainfall">Rainfall (in mm)</label>
-                            <input type="number" step="any" id="rainfall" name="rainfall" placeholder="e.g., 202.9" required>
-                        </div>
-                    </fieldset>
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        <div class="max-w-5xl mx-auto">
+            <!-- Header Section -->
+            <div class="text-center mb-8 md:mb-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-2xl mb-4 md:mb-6 shadow-lg">
+                    <svg class="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                    </svg>
                 </div>
-                
-                <button type="submit" id="predictButton">
-                    <span class="button-text">Predict Crop</span>
-                    <span class="button-loader" style="display: none;"></span>
-                </button>
-            </form>
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-3 md:mb-4">Crop Recommendation System</h1>
+                <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">Enter soil and environmental conditions to discover the optimal crop for your land</p>
+            </div>
 
-            <div id="result" class="result-box" style="display: none;">
+            <!-- Main Card -->
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-500 to-teal-600 px-6 md:px-8 py-6">
+                    <h2 class="text-xl md:text-2xl font-semibold text-white">Input Parameters</h2>
+                    <p class="text-emerald-50 text-sm md:text-base mt-1">Provide accurate measurements for best results</p>
                 </div>
+
+                <form id="cropForm" action="/" method="GET">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                        <!-- Soil Nutrients Section -->
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-800">Soil Nutrients</h3>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="N" class="block text-sm font-medium text-gray-700 mb-2">Nitrogen (N)</label>
+                                    <input type="number" step="any" id="N" name="N" placeholder="e.g., 90" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                                <div>
+                                    <label for="P" class="block text-sm font-medium text-gray-700 mb-2">Phosphorus (P)</label>
+                                    <input type="number" step="any" id="P" name="P" placeholder="e.g., 42" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                                <div>
+                                    <label for="K" class="block text-sm font-medium text-gray-700 mb-2">Potassium (K)</label>
+                                    <input type="number" step="any" id="K" name="K" placeholder="e.g., 43" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Environmental Factors Section -->
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg md:text-xl font-semibold text-gray-800">Environmental Factors</h3>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="temperature" class="block text-sm font-medium text-gray-700 mb-2">Temperature (°C)</label>
+                                    <input type="number" step="any" id="temperature" name="temperature" placeholder="e.g., 20.8" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                                <div>
+                                    <label for="humidity" class="block text-sm font-medium text-gray-700 mb-2">Humidity (%)</label>
+                                    <input type="number" step="any" id="humidity" name="humidity" placeholder="e.g., 82.0" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                                <div>
+                                    <label for="ph" class="block text-sm font-medium text-gray-700 mb-2">Soil pH</label>
+                                    <input type="number" step="any" id="ph" name="ph" placeholder="e.g., 6.5" min="0" max="14" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                                <div>
+                                    <label for="rainfall" class="block text-sm font-medium text-gray-700 mb-2">Rainfall (mm)</label>
+                                    <input type="number" step="any" id="rainfall" name="rainfall" placeholder="e.g., 202.9" required
+                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 transition-all outline-none text-gray-800">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-8">
+                        <button type="submit" id="predictButton"
+                            class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-3 text-base md:text-lg">
+                            <span class="button-text">Predict Optimal Crop</span>
+                            <svg class="button-text w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                            <div class="button-loader loader" style="display: none;"></div>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Result Box -->
+                <div id="result" class="mx-6 md:mx-8 mb-6 md:mb-8 p-6 md:p-8 bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl" style="display: none;">
+                    <div class="flex items-start gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg md:text-xl font-semibold text-gray-800 mb-2">Recommendation Result</h3>
+                            <div id="resultContent" class="text-gray-700"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-8">
+                <div class="bg-white rounded-2xl p-5 md:p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Accurate Predictions</h4>
+                    <p class="text-sm text-gray-600">Advanced ML algorithms for precise crop recommendations</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 md:p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Fast Results</h4>
+                    <p class="text-sm text-gray-600">Get instant recommendations in seconds</p>
+                </div>
+                <div class="bg-white rounded-2xl p-5 md:p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="font-semibold text-gray-800 mb-2">Maximize Yield</h4>
+                    <p class="text-sm text-gray-600">Optimize your harvest with data-driven insights</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script src="/static/script.js"></script>
+    <script src="static/script.js"></script>
 </body>
 </html>
