@@ -1,12 +1,23 @@
-pandas 
-numpy 
-seaborn
+# pandas 
+# numpy 
+# seaborn
+# scikit-learn==1.3.2
+# dill
+# xgboost
+# catboost
+# #note whenever we are doing "pip install -r requirements.txt" we have to commit down this things like -e .
+
+-e .
+
+# fastapi[standard]
+
+
+fastapi==0.120.0
+uvicorn==0.30.1
+pandas==2.2.2
+numpy==1.26.4
 scikit-learn==1.3.2
-dill
-xgboost
-catboost
-#note whenever we are doing "pip install -r requirements.txt" we have to commit down this things like -e .
+joblib==1.3.2
+python-multipart==0.0.9
+jinja2==3.1.4
 
-# -e .
-
-fastapi[standard]
