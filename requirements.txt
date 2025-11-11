@@ -28,9 +28,9 @@ kiwisolver==1.4.7
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
 matplotlib==3.7.5
-mdurl==0.1.2
--e. 
-git+https://github.com/KishlayAmbastha14/Crop_Recommendations.git@42fb257317a48c22c7200f34ced5d2b8a4a96adc#egg=MLproject
+# mdurl==0.1.2
+# -e . 
+# git+https://github.com/KishlayAmbastha14/Crop_Recommendations.git@42fb257317a48c22c7200f34ced5d2b8a4a96adc#egg=MLproject
 narwhals==1.42.1
 numpy==1.24.4
 packaging==25.0
