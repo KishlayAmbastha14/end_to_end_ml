@@ -1,23 +1,69 @@
-# pandas 
-# numpy 
-# seaborn
-# scikit-learn==1.3.2
-# dill
-# xgboost
-# catboost
-# #note whenever we are doing "pip install -r requirements.txt" we have to commit down this things like -e .
-
--e .
-
-# fastapi[standard]
-
-
+annotated-doc==0.0.3
+annotated-types==0.7.0
+anyio==4.5.2
+catboost==1.2.8
+certifi==2025.10.5
+click==8.1.8
+colorama==0.4.6
+contourpy==1.1.1
+cycler==0.12.1
+dill==0.4.0
+dnspython==2.6.1
+email-validator==2.3.0
+exceptiongroup==1.3.0
 fastapi==0.120.0
-uvicorn==0.30.1
-pandas==2.2.2
-numpy==1.26.4
+fastapi-cli==0.0.14
+fastapi-cloud-cli==0.3.1
+fonttools==4.57.0
+graphviz==0.20.3
+h11==0.16.0
+httpcore==1.0.9
+httptools==0.6.4
+httpx==0.28.1
+idna==3.11
+importlib_resources==6.4.5
+Jinja2==3.1.6
+joblib==1.4.2
+kiwisolver==1.4.7
+markdown-it-py==3.0.0
+MarkupSafe==2.1.5
+matplotlib==3.7.5
+mdurl==0.1.2
+-e. 
+git+https://github.com/KishlayAmbastha14/Crop_Recommendations.git@42fb257317a48c22c7200f34ced5d2b8a4a96adc#egg=MLproject
+narwhals==1.42.1
+numpy==1.24.4
+packaging==25.0
+pandas==2.0.3
+pillow==10.4.0
+plotly==6.3.1
+pydantic==2.10.6
+pydantic_core==2.27.2
+Pygments==2.19.2
+pyparsing==3.1.4
+python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+python-multipart==0.0.20
+pytz==2025.2
+PyYAML==6.0.3
+rich==14.2.0
+rich-toolkit==0.15.1
+rignore==0.7.1
 scikit-learn==1.3.2
-joblib==1.3.2
-python-multipart==0.0.9
-jinja2==3.1.4
-
+scipy==1.10.1
+seaborn==0.13.2
+sentry-sdk==2.42.1
+shellingham==1.5.4
+six==1.17.0
+sniffio==1.3.1
+starlette==0.44.0
+threadpoolctl==3.5.0
+typer==0.20.0
+typing_extensions==4.13.2
+tzdata==2025.2
+urllib3==2.2.3
+uvicorn==0.33.0
+watchfiles==0.24.0
+websockets==13.1
+xgboost==2.1.4
+zipp==3.20.2

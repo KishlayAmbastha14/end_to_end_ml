@@ -1,5 +1,6 @@
 document.getElementById('cropForm').addEventListener('submit', async function(event) {
     event.preventDefault();
+    console.log("🚀 Form intercepted by JS");
 
     const button = document.getElementById('predictButton');
     const buttonText = button.querySelector('.button-text');
@@ -35,12 +36,11 @@ document.getElementById('cropForm').addEventListener('submit', async function(ev
 
     try {
         // --- 3. Make API Call ---
-        const response = await fetch("http://127.0.0.1:8000/predict", {
+        const response = await  fetch('https://crop-recommendations-kj8m.onrender.com/predict',{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(formData)
         });
-
         const result = await response.json();
 
         // --- 4. Handle Response ---
